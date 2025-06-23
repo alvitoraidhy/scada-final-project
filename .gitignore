@@ -1,0 +1,5 @@
+volumes/node-red/*
+volumes/mqtt/*
+
+node_modules/
+!.gitkeep

@@ -1,0 +1,23 @@
+services:
+  node-red:
+    image: nodered/node-red:3.1.15-debian
+    depends_on:
+      mqtt: { condition: service_healthy }
+    ports:
+      - 1880:1880
+    volumes:
+      - ./volumes/node-red:/data:rw
+
+  mqtt:
+    image: rabbitmq:3-alpine
+    restart: unless-stopped
+    hostname: mqtt
+    command: '/bin/bash -c "rabbitmq-plugins enable --offline rabbitmq_mqtt; rabbitmq-server"'
+    volumes:
+      - ./volumes/mqtt/data:/var/lib/rabbitmq/
+      - ./volumes/mqtt/log:/var/log/rabbitmq/
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 30s
+      timeout: 30s
+      retries: 3
