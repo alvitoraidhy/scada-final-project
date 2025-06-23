@@ -1,5 +1,7 @@
 volumes/node-red/*
+volumes/proxy/*
 volumes/mqtt/*
+.env
 
 node_modules/
 !.gitkeep

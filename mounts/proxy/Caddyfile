@@ -1,0 +1,12 @@
+:1880 {
+  @auth {
+    path /*
+    not path /ui/*
+  }
+
+  basic_auth @auth {
+	  {$BASIC_AUTH_USERNAME} {$BASIC_AUTH_PASSWORD_HASH}
+	}
+    
+  reverse_proxy /* http://node-red:1880
+}

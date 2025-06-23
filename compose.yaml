@@ -1,10 +1,22 @@
 services:
+  proxy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - 1880:1880
+    environment:
+      - BASIC_AUTH_USERNAME
+      - BASIC_AUTH_PASSWORD_HASH
+    volumes:
+      - ./mounts/proxy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./volumes/proxy/config:/config:rw
+      - ./volumes/proxy/data:/data:rw
+      - ./volumes/proxy/srv:/srv:rw
+
   node-red:
     image: nodered/node-red:3.1.15-debian
     depends_on:
       mqtt: { condition: service_healthy }
-    ports:
-      - 1880:1880
     volumes:
       - ./volumes/node-red:/data:rw
 
