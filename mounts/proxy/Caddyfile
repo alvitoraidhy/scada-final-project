@@ -1,4 +1,4 @@
-{$PUBLIC_IP_ADDRESS}:1880 {
+{$BIND_ADDRESS} {
   @auth {
     path /*
     not path /ui/*
