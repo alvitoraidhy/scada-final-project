@@ -7,6 +7,7 @@ services:
     environment:
       - BASIC_AUTH_USERNAME
       - BASIC_AUTH_PASSWORD_HASH
+      - PUBLIC_IP_ADDRESS
     volumes:
       - ./mounts/proxy/Caddyfile:/etc/caddy/Caddyfile:ro
       - ./volumes/proxy/config:/config:rw
